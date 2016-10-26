@@ -13,11 +13,16 @@ const buildValue = (value) => {
   return res;
 };
 
+const getColor = () => {
+  const colors = [Math.random(), Math.random(), Math.random()];
+  return `rgba(${colors.map(c => (c * 127).toFixed()).join(',')}, 1)`;
+};
+
 export default class Number extends Component {
 
   constructor() {
     super(...arguments);
-    this.state = { value: buildValue(this.props.value) };
+    this.state = { value: buildValue(this.props.value), color: getColor() };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,10 +45,19 @@ export default class Number extends Component {
     console.log('  componentDidUpdate - props/state changed=', shallowCompare(this, prevProps, prevState));
   }
 
+  onChangeColor(e) {
+    e.preventDefault();
+    this.setState({ color: getColor() });
+  }
+
   render() {
     console.log(`  rendering number with props=${this.props.value}, state=${this.state.value}`);
+    const style = { color: this.state.color };
     return (
-      <div>I'm a number: { this.state.value }</div>
+      <div>
+        <div style={ style }>I'm a number: { this.state.value }</div>
+        <a href="#" onClick={ this.onChangeColor.bind(this) }>Color</a>
+      </div>
     );
   }
 }
