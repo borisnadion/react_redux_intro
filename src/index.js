@@ -1,12 +1,19 @@
-//import React from 'react';
-//import ReactDOM from 'react-dom';
-//import App from './App';
-//import './index.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './index.css';
+import { Provider } from 'react-redux';
+import { buildStore } from './redux/build_store';
 
-//ReactDOM.render(
-  //<App />,
-  //document.getElementById('root')
-//);
+const store = buildStore();
 
-import { go } from './redux_console';
-go();
+const app = (
+  <Provider store={ store }>
+    <App />
+  </Provider>
+);
+
+ReactDOM.render(
+  app,
+  document.getElementById('root')
+);
