@@ -1,7 +1,6 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import createLogger from 'redux-logger';
 
-
 const counter = (state = 0, action) => {
   switch (action.type) {
     case 'dec': {
@@ -52,7 +51,7 @@ export const go = () => {
 
   store.dispatch({ type: "inc" });
   store.dispatch({ type: "inc" });
-  store.dispatch({ type: "dev" });
+  store.dispatch({ type: "dec" });
 
   console.log(store.getState());
 };
