@@ -24,7 +24,18 @@ export default class Number extends Component {
     if (nextProps.value === this.props.value) {
       console.log("  -----same props");
     }
-    this.setState({ value: buildValue(nextProps.value) });
+    else {
+      this.setState({ value: buildValue(nextProps.value) });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.value === this.props.value) {
+      console.log('  shouldComponentUpdate - no!');
+      return false;
+    }
+    console.log('  shouldComponentUpdate - yes');
+    return true;
   }
 
   render() {
