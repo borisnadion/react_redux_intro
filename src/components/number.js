@@ -23,6 +23,7 @@ export default class Number extends Component {
   constructor() {
     super(...arguments);
     this.state = { value: buildValue(this.props.value), color: getColor() };
+    this.onChangeColor = this.onChangeColor.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -56,7 +57,7 @@ export default class Number extends Component {
     return (
       <div>
         <div style={ style }>I'm a number: { this.state.value }</div>
-        <a href="#" onClick={ this.onChangeColor.bind(this) }>Color</a>
+        <a href="#" onClick={ this.onChangeColor }>Color</a>
       </div>
     );
   }
