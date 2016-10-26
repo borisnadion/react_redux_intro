@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Number from './components/number';
 
 class App extends Component {
   render() {
@@ -9,7 +10,7 @@ class App extends Component {
           <h2>Hello world</h2>
         </div>
         <p className="App-intro">
-          Here will be the code!
+          <Number value={ 12 } />
         </p>
       </div>
     );
