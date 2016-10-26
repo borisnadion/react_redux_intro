@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Number = ({ value }) => {
-  console.log(`rendering number with ${value}`);
-  return (
-    <div>I'm a number { value }</div>
-  );
+// expensive computation goes here
+const buildValue = (value) => {
+  console.log('  expensive computation');
+  let res = value;
+  if (value % 2) {
+    res += ' even';
+  } else {
+    res += ' odd';
+  }
+  return res;
 };
 
-export default Number;
+export default class Number extends Component {
+
+  constructor() {
+    super(...arguments);
+    this.state = { value: buildValue(this.props.value) };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('  componentWillReceiveProps, nextProps=', nextProps);
+    if (nextProps.value === this.props.value) {
+      console.log("  -----same props");
+    }
+    this.setState({ value: buildValue(nextProps.value) });
+  }
+
+  render() {
+    console.log(`  rendering number with props=${this.props.value}, state=${this.state.value}`);
+    return (
+      <div>I'm a number: { this.state.value }</div>
+    );
+  }
+}

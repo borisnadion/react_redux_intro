@@ -10,7 +10,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(this.onTimer, 1000);
+    this.interval = setInterval(this.onTimer, 2000);
+    setTimeout(() => this.forceUpdate(), 5000);
   }
 
   componentWillUnmount() {
