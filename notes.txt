@@ -1,0 +1,83 @@
+* #rendering
+	full featured component
+	function aka stateless component
+
+* #changes
+	state and prop changes
+	
+lifecycle (#changes)
+	* constructor
+		init state, bind things
+	* componentWillMount
+		no subscriptions here
+		state changes will not trigger re-rendering
+		barely used for web rendering
+		the only hook for server side rendering
+	* render
+		pure function
+		doesn’t interact with browser
+		returns the same all the time for given props and state
+	* componentDidMount
+		can change the state here
+	
+#componentWillReceiveProps
+		componentWillReceiveProps
+			recalculations for rendering
+			might be called when parent is re-rendering
+		shouldComponentUpdate #shouldComponentUpdate
+			changes
+			no componentWillUpdate, render and componentDidUpdate on false
+			shallowCompare #shallowCompare
+		componentWillUpdate
+			no setState here, use componentWillReceiveProps
+			barely used for web rendering
+		render
+		componentDidUpdate
+			some DOM manipulations, compare the props
+		
+		componentWillUnmount
+			cleanups
+	
+bindings #bindings
+	why
+	constructor, not props
+	alternative (not yet recommended) - arrow properties
+		npm install babel-plugin-transform-class-properties
+
+redux #redux
+	simple state management
+		Single source of truth
+		State is read-only
+		Changes are made with pure functions
+
+react-redux #rr
+	provider
+	actions
+	reducers
+	build_store
+	smart components & dump
+	mapping
+	ownProps and chrome react debugger
+
+ifs look bad, switch even worst #handleActions
+	redux-actions
+		handleActions
+		possible to use createAction and createActions
+			simplify the creation of the actions
+
+computable values #comp
+	component or reducer
+	move convertNumber to container
+		question of logic?
+
+
+git co comp
+git co rr
+git co redux
+git co bindings
+git co shallowCompare
+git co shouldComponentUpdate
+git co componentWillReceiveProps
+git co changes
+git co rendering
+
