@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Number from './number';
+import Number from '../containers/number';
 
 class Main extends Component {
   constructor() {
