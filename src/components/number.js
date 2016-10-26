@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import shallowCompare from 'react-addons-shallow-compare';
 
 // expensive computation goes here
 const buildValue = (value) => {
@@ -30,12 +31,13 @@ export default class Number extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.value === this.props.value) {
-      console.log('  shouldComponentUpdate - no!');
-      return false;
-    }
-    console.log('  shouldComponentUpdate - yes');
-    return true;
+    const res = shallowCompare(this, nextProps, nextState);
+    console.log('  shouldComponentUpdate - ', res);
+    return res;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('  componentDidUpdate - props/state changed=', shallowCompare(this, prevProps, prevState));
   }
 
   render() {
